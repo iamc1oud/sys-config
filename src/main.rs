@@ -1,3 +1,7 @@
+mod error;
+
+use std::path::PathBuf;
+
 use clap::{Parser, Subcommand};
 
 /// Manages configuration files scattered throught a user's filesystem while keeping them synchronized
@@ -11,13 +15,13 @@ struct Cli {
 #[derive(Subcommand)]
 enum Command {
     /// Initialize a new repo
-    Init,
+    Init { path: Option<String> },
 
     /// Track the specific file and folder
-    Track,
+    Track { path: PathBuf },
 
     /// Untrack the path or file
-    Untrack,
+    Untrack { links: Vec<String> },
 
     /// List all paths in sync
     List,
@@ -31,17 +35,25 @@ enum Command {
     /// Sync changes with remote
     Sync,
 
-    /// Pull changes from remote to local
+    /// Pull changes from remote and sync with system
     Apply,
 }
 
 fn main() {
-    let args = Cli::parse();
+    let cli = Cli::parse();
 
-    match args.command {
-        Command::Init => println!("Initialize empty sync repo"),
-        Command::Track => println!("Implement track"),
-        Command::Untrack => println!("Untrack"),
+    match cli.command {
+        Command::Init { path } => {
+            if path.is_none() {
+                // TODO: Pick the current location
+            }
+
+            println!("{:?} init location", path)
+        }
+        Command::Track { path } => {
+            println!("{:?}", path)
+        }
+        Command::Untrack { links } => println!("Untrack"),
         Command::List => println!("List"),
         Command::Status => println!("Status"),
         Command::Diff => println!("Diff"),
