@@ -1,13 +1,15 @@
-mod error;
-
-use std::path::PathBuf;
+use std::{path::PathBuf, process::ExitCode};
 
 use clap::{Parser, Subcommand};
 
-/// Manages configuration files scattered throught a user's filesystem while keeping them synchronized
+mod error;
+
 #[derive(Parser)]
-#[command(version, about)]
+#[command(name = "sys-config", version, about)]
 struct Cli {
+    #[arg(long, global = true)]
+    repo: Option<PathBuf>,
+
     #[command(subcommand)]
     command: Command,
 }
@@ -15,49 +17,40 @@ struct Cli {
 #[derive(Subcommand)]
 enum Command {
     /// Initialize a new repo
-    Init { path: Option<String> },
+    Init { path: Option<PathBuf> },
 
     /// Track the specific file and folder
-    Track { path: PathBuf },
+    Track { paths: Vec<PathBuf> },
 
     /// Untrack the path or file
-    Untrack { links: Vec<String> },
+    Untrack { paths: Vec<PathBuf> },
 
     /// List all paths in sync
     List,
-
     /// Get status
     Status,
-
     /// Get diff
     Diff,
-
     /// Sync changes with remote
     Sync,
-
     /// Pull changes from remote and sync with system
     Apply,
 }
 
-fn main() {
+fn main() -> ExitCode {
     let cli = Cli::parse();
+    println!("repo: {:?}", cli.repo);
 
     match cli.command {
-        Command::Init { path } => {
-            if path.is_none() {
-                // TODO: Pick the current location
-            }
-
-            println!("{:?} init location", path)
-        }
-        Command::Track { path } => {
-            println!("{:?}", path)
-        }
-        Command::Untrack { links } => println!("Untrack"),
-        Command::List => println!("List"),
-        Command::Status => println!("Status"),
-        Command::Diff => println!("Diff"),
-        Command::Sync => println!("Sync"),
-        Command::Apply => println!("Apply"),
+        Command::Init { path } => println!("init {path:?}"),
+        Command::Track { paths } => println!("track {paths:?}"),
+        Command::Untrack { paths } => println!("untrack {paths:?}"),
+        Command::List => println!("list"),
+        Command::Status => println!("status"),
+        Command::Diff => println!("diff"),
+        Command::Sync => println!("sync"),
+        Command::Apply => println!("apply"),
     }
+
+    ExitCode::SUCCESS
 }
