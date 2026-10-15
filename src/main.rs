@@ -27,12 +27,16 @@ enum Command {
 
     /// List all paths in sync
     List,
+
     /// Get status
     Status,
+
     /// Get diff
     Diff,
+
     /// Sync changes with remote
     Sync,
+
     /// Pull changes from remote and sync with system
     Apply,
 }
