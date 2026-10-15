@@ -3,6 +3,8 @@ use std::{path::PathBuf, process::ExitCode};
 use clap::{Parser, Subcommand};
 
 mod error;
+mod hashing;
+mod scanner;
 
 #[derive(Parser)]
 #[command(name = "sys-config", version, about)]
