@@ -7,7 +7,7 @@ use std::{
 use anyhow::Result;
 use walkdir::WalkDir;
 
-use crate::hashing::hash_file;
+use super::hashing::hash_file;
 
 /// Relative path (`/`-separated, `""`for a single file) -> contain hash
 pub type Snapshot = BTreeMap<String, String>;
