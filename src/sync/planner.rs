@@ -77,6 +77,13 @@ pub fn decide(dir: Direction, target: Option<&str>, repo: Option<&str>, base: Op
         Direction::ToRepo => (target, repo),
         Direction::ToTarget => (repo, target),
     };
+
+    // On apply (ToTarget): if target is absent, base is absent, and repo exists: Create (fresh clone).
+    // This handles: cloning a repo on a new machine where the config doesn't exist yet.
+    if dir == Direction::ToTarget && dst.is_none() && src.is_some() && base.is_none() {
+        return Kind::Create;
+    }
+
     match (src != base, dst != base) {
         (true, false) => match (src, dst) {
             (None, _) => Kind::Delete,
