@@ -38,7 +38,7 @@ pub fn run(ctx: &Ctx) -> Result<()> {
         .collect();
     if !behind.is_empty() {
         clean = false;
-        println!("Repository changes (run `smartrepo apply`)");
+        println!("Repository changes (run `sysconfig apply`)");
         for a in behind {
             println!("  {} {}", a.kind.symbol(), a.display);
         }

@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::filesystem::copier::write_atomic;
 
-pub const STATE_DIR: &str = ".smartrepo";
+pub const STATE_DIR: &str = ".sysconfig";
 const STATE_FILE: &str = "state.toml";
 
 #[derive(Debug, Default, Serialize, Deserialize)]

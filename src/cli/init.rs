@@ -52,11 +52,11 @@ mod tests {
         ensure_gitignore(dir.path()).unwrap();
         ensure_gitignore(dir.path()).unwrap();
         let text = fs::read_to_string(dir.path().join(".gitignore")).unwrap();
-        assert_eq!(text, ".smartrepo/\n");
+        assert_eq!(text, ".sysconfig/\n");
 
         fs::write(dir.path().join(".gitignore"), "target").unwrap();
         ensure_gitignore(dir.path()).unwrap();
         let text = fs::read_to_string(dir.path().join(".gitignore")).unwrap();
-        assert_eq!(text, "target\n.smartrepo/\n");
+        assert_eq!(text, "target\n.sysconfig/\n");
     }
 }

@@ -12,7 +12,7 @@ fn is_repo(dir: &Path) -> bool {
 }
 
 pub fn pointer_path(home: &Path) -> PathBuf {
-    home.join(".config/smartrepo/repo")
+    home.join(".config/sysconfig/repo")
 }
 
 pub fn write_pointer(home: &Path, repo: &Path) -> Result<()> {
@@ -24,7 +24,7 @@ pub fn write_pointer(home: &Path, repo: &Path) -> Result<()> {
 /// Find the SmartRepo repository in this order:
 /// 1. Explicit `--repo` / `$SMARTREPO_DIR`
 /// 2. Walk up from current directory
-/// 3. Pointer file at ~/.config/smartrepo/repo
+/// 3. Pointer file at ~/.config/sysconfig/repo
 pub fn find_repo(explicit: Option<&Path>, cwd: &Path, home: &Path) -> Result<PathBuf> {
     // Explicit repo given, must be valid
     if let Some(p) = explicit {

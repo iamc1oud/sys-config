@@ -29,3 +29,4 @@ rustc-ice-*.txt
 /target
 specs/
 *.pdf
+.smartrepo/

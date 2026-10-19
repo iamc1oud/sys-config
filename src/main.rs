@@ -16,7 +16,7 @@ use cli::{Ctx, RunOpts};
 
 /// Manages configuration files scattered throughout a user's filesystem while keeping them synchronized
 #[derive(Parser)]
-#[command(name = "smartrepo", version, about)]
+#[command(name = "sysconfig", version, about)]
 struct Cli {
     /// SmartRepo repository to operate on (default: search upward from the current directory)
     #[arg(long, global = true, env = "SMARTREPO_DIR")]
