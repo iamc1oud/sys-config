@@ -17,12 +17,12 @@ Manages configuration files scattered throughout your filesystem while keeping t
 ### From release (macOS/Linux)
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/ajay-singh-questions/sys-config/main/install.sh | bash -s v0.1.0
+curl -fsSL https://raw.githubusercontent.com/iamc1oud/sys-config/main/install.sh | bash -s v0.1.0
 ```
 
 Or manually specify version:
 ```sh
-bash <(curl -fsSL https://raw.githubusercontent.com/ajay-singh-questions/sys-config/main/install.sh) v0.1.0
+bash <(curl -fsSL https://raw.githubusercontent.com/iamc1oud/sys-config/main/install.sh) v0.1.0
 ```
 
 Binary installs to `~/.local/bin/sysconfig`. Add to PATH if needed:
