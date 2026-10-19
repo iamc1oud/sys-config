@@ -14,8 +14,30 @@ Manages configuration files scattered throughout your filesystem while keeping t
 
 ## Install
 
+### From release (macOS/Linux)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/ajay-singh-questions/sys-config/main/install.sh | bash -s v0.1.0
+```
+
+Or manually specify version:
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/ajay-singh-questions/sys-config/main/install.sh) v0.1.0
+```
+
+Binary installs to `~/.local/bin/sysconfig`. Add to PATH if needed:
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+### From source
+
+Requires Rust 1.85+:
 ```sh
 cargo install --path .
+# or
+cargo build --release
+./target/release/sys-config --version
 ```
 
 ## Quick Start
@@ -203,6 +225,34 @@ sysconfig apply --yes
 cargo test            # Unit tests
 cargo test --test e2e # End-to-end: tracks, syncs, clones, applies
 ```
+
+## Building & Releases
+
+### Build locally
+
+```sh
+cargo build --release
+./target/release/sys-config --version
+```
+
+### Create a release
+
+```sh
+# Build and package for current platform
+./release.sh 0.1.0
+
+# Upload to GitHub Releases (requires `gh` CLI)
+gh release create v0.1.0 releases/* --generate-notes
+```
+
+Release artifacts are created in `./releases/`:
+- `sys-config-{VERSION}-{OS}-{ARCH}` — executable binary
+- `.sha256` — checksum for verification
+
+Supported platforms:
+- macOS (arm64)
+- Linux (x86_64, arm64) — build on target platform
+- Windows — build from WSL or native MSVC
 
 ## License
 
