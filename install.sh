@@ -21,7 +21,7 @@ case "$OS" in
 esac
 
 BINARY_NAME="sys-config-${VERSION}-${OS}-${ARCH}"
-GITHUB_REPO="ajay-singh-questions/sys-config"
+GITHUB_REPO="iamc1oud/sys-config"
 DOWNLOAD_URL="https://github.com/${GITHUB_REPO}/releases/download/v${VERSION}/${BINARY_NAME}"
 
 echo "Installing sysconfig ${VERSION} for ${OS}/${ARCH}..."
