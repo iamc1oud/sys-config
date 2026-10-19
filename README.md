@@ -17,12 +17,12 @@ Manages configuration files scattered throughout your filesystem while keeping t
 ### From release (macOS/Linux)
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/iamc1oud/sys-config/main/install.sh | bash -s 0.1
+curl -fsSL https://raw.githubusercontent.com/iamc1oud/sys-config/main/install.sh | bash
 ```
 
-Or manually specify version:
+Pin a specific release tag:
 ```sh
-bash <(curl -fsSL https://raw.githubusercontent.com/iamc1oud/sys-config/main/install.sh) 0.1
+curl -fsSL https://raw.githubusercontent.com/iamc1oud/sys-config/main/install.sh | bash -s 0.1
 ```
 
 Binary installs to `~/.local/bin/sysconfig`. Add to PATH if needed:
@@ -239,14 +239,14 @@ cargo build --release
 
 ```sh
 # Build and package for current platform
-./release.sh 0.1.0
+./release.sh
 
-# Upload to GitHub Releases (requires `gh` CLI)
-gh release create v0.1.0 releases/* --generate-notes
+# Upload to GitHub Releases (requires `gh` CLI); the tag is used as-is, no `v` prefix needed
+gh release create 0.2 releases/* --generate-notes
 ```
 
 Release artifacts are created in `./releases/`:
-- `sys-config-{VERSION}-{OS}-{ARCH}` — executable binary
+- `sysconfig-{OS}-{ARCH}` — executable binary (no version in the name, so `install.sh` finds it under any tag)
 - `.sha256` — checksum for verification
 
 Supported platforms:

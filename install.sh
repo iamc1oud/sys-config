@@ -20,9 +20,14 @@ case "$OS" in
   *) echo "Unsupported OS: $OS"; exit 1 ;;
 esac
 
-BINARY_NAME="sys-config-${VERSION}-${OS}-${ARCH}"
+BINARY_NAME="sysconfig-${OS}-${ARCH}"
 GITHUB_REPO="iamc1oud/sys-config"
-DOWNLOAD_URL="https://github.com/${GITHUB_REPO}/releases/download/v${VERSION}/${BINARY_NAME}"
+if [ "$VERSION" = "latest" ]; then
+  DOWNLOAD_URL="https://github.com/${GITHUB_REPO}/releases/latest/download/${BINARY_NAME}"
+else
+  # VERSION is the exact release tag, e.g. 0.1
+  DOWNLOAD_URL="https://github.com/${GITHUB_REPO}/releases/download/${VERSION}/${BINARY_NAME}"
+fi
 
 echo "Installing sysconfig ${VERSION} for ${OS}/${ARCH}..."
 mkdir -p "$INSTALL_DIR"
